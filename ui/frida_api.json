@@ -1,0 +1,219 @@
+{
+    "Interceptor": {
+        "attach": {
+            "description": "Hook指定地址的函数",
+            "syntax": "Interceptor.attach(target, callbacks)",
+            "params": ["target: NativePointer", "callbacks: {onEnter, onLeave}"]
+        },
+        "detachAll": {
+            "description": "移除所有Hook",
+            "syntax": "Interceptor.detachAll()"
+        },
+        "replace": {
+            "description": "替换函数实现",
+            "syntax": "Interceptor.replace(target, replacement)",
+            "params": ["target: NativePointer", "replacement: NativeCallback"]
+        }
+    },
+    "Memory": {
+        "readByteArray": {
+            "description": "读取内存数据",
+            "syntax": "Memory.readByteArray(address, length)",
+            "params": ["address: NativePointer", "length: number"]
+        },
+        "writeByteArray": {
+            "description": "写入内存数据",
+            "syntax": "Memory.writeByteArray(address, bytes)",
+            "params": ["address: NativePointer", "bytes: ArrayBuffer"]
+        },
+        "protect": {
+            "description": "修改内存保护属性",
+            "syntax": "Memory.protect(address, size, protection)",
+            "params": ["address: NativePointer", "size: number", "protection: string"]
+        },
+        "alloc": {
+            "description": "分配内存",
+            "syntax": "Memory.alloc(size, options)",
+            "params": ["size: number", "options?: {near: NativePointer}"]
+        },
+        "copy": {
+            "description": "复制内存数据",
+            "syntax": "Memory.copy(dst, src, size)",
+            "params": ["dst: NativePointer", "src: NativePointer", "size: number"]
+        },
+        "scan": {
+            "description": "扫描内存",
+            "syntax": "Memory.scan(address, size, pattern, callbacks)",
+            "params": ["address: NativePointer", "size: number", "pattern: string", "callbacks: {onMatch, onComplete}"]
+        }
+    },
+    "Module": {
+        "findBaseAddress": {
+            "description": "查找模块基地址",
+            "syntax": "Module.findBaseAddress(name)",
+            "params": ["name: string"]
+        },
+        "findExportByName": {
+            "description": "查找导出函数地址",
+            "syntax": "Module.findExportByName(module, exportName)",
+            "params": ["module: string|null", "exportName: string"]
+        },
+        "enumerateExports": {
+            "description": "枚举所有导出函数",
+            "syntax": "Module.enumerateExports(name)",
+            "params": ["name: string"]
+        },
+        "enumerateImports": {
+            "description": "枚举所有导入函数",
+            "syntax": "Module.enumerateImports(name)",
+            "params": ["name: string"]
+        },
+        "enumerateSymbols": {
+            "description": "枚举所有符号",
+            "syntax": "Module.enumerateSymbols(name)",
+            "params": ["name: string"]
+        },
+        "load": {
+            "description": "加载动态库",
+            "syntax": "Module.load(name)",
+            "params": ["name: string"]
+        }
+    },
+    "Process": {
+        "enumerateModules": {
+            "description": "枚举所有加载的模块",
+            "syntax": "Process.enumerateModules()"
+        },
+        "findModuleByAddress": {
+            "description": "通过地址查找模块",
+            "syntax": "Process.findModuleByAddress(address)",
+            "params": ["address: NativePointer"]
+        },
+        "enumerateThreads": {
+            "description": "枚举所有线程",
+            "syntax": "Process.enumerateThreads()"
+        },
+        "getCurrentThreadId": {
+            "description": "获取当前线程ID",
+            "syntax": "Process.getCurrentThreadId()"
+        },
+        "setExceptionHandler": {
+            "description": "设置异常处理器",
+            "syntax": "Process.setExceptionHandler(callback)",
+            "params": ["callback: function(details)"]
+        }
+    },
+    "Thread": {
+        "backtrace": {
+            "description": "获取调用堆栈",
+            "syntax": "Thread.backtrace(context, backtracer)",
+            "params": ["context: CpuContext", "backtracer: Backtracer"]
+        },
+        "sleep": {
+            "description": "线程休眠",
+            "syntax": "Thread.sleep(delay)",
+            "params": ["delay: number"]
+        }
+    },
+    "NativePointer": {
+        "readCString": {
+            "description": "读取C风格字符串",
+            "syntax": "pointer.readCString()",
+            "returns": "string"
+        },
+        "readUtf16String": {
+            "description": "读取UTF16字符串",
+            "syntax": "pointer.readUtf16String()",
+            "returns": "string"
+        },
+        "readU8": {
+            "description": "读取8位无符号整数",
+            "syntax": "pointer.readU8()",
+            "returns": "number"
+        },
+        "readU16": {
+            "description": "读取16位无符号整数",
+            "syntax": "pointer.readU16()",
+            "returns": "number"
+        },
+        "readU32": {
+            "description": "读取32位无符号整数",
+            "syntax": "pointer.readU32()",
+            "returns": "number"
+        },
+        "readU64": {
+            "description": "读取64位无符号整数",
+            "syntax": "pointer.readU64()",
+            "returns": "number"
+        },
+        "readS8": {
+            "description": "读取8位有符号整数",
+            "syntax": "pointer.readS8()",
+            "returns": "number"
+        },
+        "readS16": {
+            "description": "读取16位有符号整数",
+            "syntax": "pointer.readS16()",
+            "returns": "number"
+        },
+        "readS32": {
+            "description": "读取32位有符号整数",
+            "syntax": "pointer.readS32()",
+            "returns": "number"
+        },
+        "readS64": {
+            "description": "读取64位有符号整数",
+            "syntax": "pointer.readS64()",
+            "returns": "number"
+        },
+        "readFloat": {
+            "description": "读取单精度浮点数",
+            "syntax": "pointer.readFloat()",
+            "returns": "number"
+        },
+        "readDouble": {
+            "description": "读取双精度浮点数",
+            "syntax": "pointer.readDouble()",
+            "returns": "number"
+        },
+        "add": {
+            "description": "指针加法",
+            "syntax": "pointer.add(offset)",
+            "params": ["offset: number"]
+        },
+        "sub": {
+            "description": "指针减法",
+            "syntax": "pointer.sub(offset)",
+            "params": ["offset: number"]
+        }
+    },
+    "DebugSymbol": {
+        "fromAddress": {
+            "description": "从地址获取调试符号",
+            "syntax": "DebugSymbol.fromAddress(address)",
+            "params": ["address: NativePointer"]
+        },
+        "getFunctionByName": {
+            "description": "通过名称获取函数地址",
+            "syntax": "DebugSymbol.getFunctionByName(name)",
+            "params": ["name: string"]
+        }
+    },
+    "Console": {
+        "log": {
+            "description": "输出日志",
+            "syntax": "console.log(format, ...args)",
+            "params": ["format: string", "...args: any[]"]
+        },
+        "warn": {
+            "description": "输出警告",
+            "syntax": "console.warn(format, ...args)",
+            "params": ["format: string", "...args: any[]"]
+        },
+        "error": {
+            "description": "输出错误",
+            "syntax": "console.error(format, ...args)",
+            "params": ["format: string", "...args: any[]"]
+        }
+    }
+} 
